@@ -243,9 +243,9 @@ namespace CoffeeShopCrud
 
         }
 
-        private bool CheckIfNumeric(string input)
+        private bool checkifnumeric(string input)
         {
-            return input.IsNumeric();
+            return input.isnumeric();
         }
 
         private void Clear()

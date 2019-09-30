@@ -9,12 +9,14 @@ using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using CoffeeShopCrud.BLL;
 
 namespace CoffeeShopCrud
 {
     public partial class ItemUi : Form
     {
-        string connectionString = @"Server = DESKTOP-J6257UA; Database = CoffeeShop; Integrated Security = true";
+        ItemManager _itemRepository = new ItemManager();
+         string connectionString = @"Server = DESKTOP-J6257UA; Database = CoffeeShop; Integrated Security = true";
 
         int id;
         public ItemUi()
@@ -24,56 +26,29 @@ namespace CoffeeShopCrud
 
         private void addButton_Click(object sender, EventArgs e)
         {
-            string name = nameTextBox.Text;
-            string price = priceTextBox.Text;
-
-            if (name == "" || price == "")
+            //Mandatory
+            if (String.IsNullOrEmpty(priceTextBox.Text))
             {
-                MessageBox.Show("Field must not be empty..");
-                return;
-            }
-            else if (CheckIfNumeric(name))
-            {
-                MessageBox.Show("Please enter Item name, not numeric value.");
-                nameTextBox.Clear();
-                return;
-            }
-            if (SelectName() == 1)
-            {
-                MessageBox.Show("Item Name is Already exist..");
+                MessageBox.Show("Price can not be Empty!!");
                 return;
             }
 
-            try
+            //Unique
+           if (_itemRepository.IsNameExist(nameTextBox.Text))
             {
-                SqlConnection sqlConnection = new SqlConnection(connectionString);
-                string commandString = "INSERT INTO Items(Name, Price)VALUES('" + name + "', " + price + ")";
-                SqlCommand sqlCommand = new SqlCommand(commandString, sqlConnection);
-
-                sqlConnection.Open();
-                int isExecute = sqlCommand.ExecuteNonQuery();
-                if (isExecute > 0)
-                {
-                    if (ShowData() == 1)
-                    {
-                        MessageBox.Show("Saved Successfully");
-                        Clear();
-                    }
-                }
-                else
-                {
-                    MessageBox.Show("Not Saved Data, Check Inserting Details");
-                }
-                sqlConnection.Close();
-            }
-            catch (Exception exep)
-            {
-                MessageBox.Show(exep.Message);
+                MessageBox.Show(nameTextBox.Text + " Already Exist!!");
+                return;
             }
 
-
-
-
+            //Add/Insert
+            if (_itemRepository.Add(nameTextBox.Text, Convert.ToDouble(priceTextBox.Text)))
+            {
+                MessageBox.Show("Saved");
+            }
+            else
+            {
+                MessageBox.Show("Not Saved");
+            }
         }
 
         private void Clear()
@@ -82,9 +57,9 @@ namespace CoffeeShopCrud
             priceTextBox.Clear();
         }
 
-        private bool CheckIfNumeric(string input)
+        private bool checkifnumeric(string input)
         {
-            return input.IsNumeric();
+            return input.isnumeric();
         }
 
         private int SelectName()
@@ -131,12 +106,12 @@ namespace CoffeeShopCrud
                 MessageBox.Show("Field must not be empty..");
                 return;
             }
-            else if (CheckIfNumeric(name))
-            {
-                MessageBox.Show("Please enter Item name, not numeric value.");
-                nameTextBox.Clear();
-                return;
-            }
+            //else if (checkifnumeric(name))
+            //{
+            //    messagebox.show("please enter item name, not numeric value.");
+            //    nametextbox.clear();
+            //    return;
+            //}
 
             try
             {
@@ -274,11 +249,11 @@ namespace CoffeeShopCrud
         
     }
 
-    public static class StringExtensions
+    public static class stringextensions
     {
-        public static bool IsNumeric(this string input)
+        public static bool isnumeric(this string input)
         {
-            return Regex.IsMatch(input, @"^\d+$");
+            return regex.ismatch(input, @"^\d+$");
         }
     }
 }

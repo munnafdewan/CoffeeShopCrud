@@ -24,10 +24,10 @@ namespace CoffeeShopCrud
         {
             InitializeComponent();
         }
-        private bool CheckIfNumeric(string input)
-        {
-            return input.IsNumeric();
-        }
+        //private bool checkifnumeric(string input)
+        //{
+        //    return input.isnumeric();
+        //}
 
         private void saveButton_Click(object sender, EventArgs e)
         {
@@ -41,12 +41,12 @@ namespace CoffeeShopCrud
                 MessageBox.Show("Field must not be empty..");
                 return;
             }
-            else if (CheckIfNumeric(name))
-            {
-                MessageBox.Show("Please enter Customer name, not numeric value.");
-                nameTextBox.Clear();
-                return;
-            }
+            //else if (CheckIfNumeric(name))
+            //{
+            //    MessageBox.Show("Please enter Customer name, not numeric value.");
+            //    nameTextBox.Clear();
+            //    return;
+            //}
             if (SelectName() == 1)
             {
                 MessageBox.Show("Customer Name is Already exist..");
@@ -100,12 +100,12 @@ namespace CoffeeShopCrud
                 MessageBox.Show("Field must not be empty..");
                 return;
             }
-            else if (CheckIfNumeric(name))
-            {
-                MessageBox.Show("Please enter Customer name, not numeric value.");
-                nameTextBox.Clear();
-                return;
-            }
+            //else if (CheckIfNumeric(name))
+            //{
+            //    MessageBox.Show("Please enter Customer name, not numeric value.");
+            //    nameTextBox.Clear();
+            //    return;
+            //}
 
             try
             {

@@ -4,10 +4,10 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{4687417D-F888-4D22-A114-78AD18A6C44F}</ProjectGuid>
+    <ProjectGuid>{05EE4BC2-6FCF-4A2F-8E57-67B457F904B1}</ProjectGuid>
     <OutputType>WinExe</OutputType>
-    <RootNamespace>CoffeeShopCrud</RootNamespace>
-    <AssemblyName>CoffeeShopCrud</AssemblyName>
+    <RootNamespace>MyWindowsFormsApp</RootNamespace>
+    <AssemblyName>MyWindowsFormsApp</AssemblyName>
     <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
@@ -46,18 +46,44 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ArrayUi.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ArrayUi.Designer.cs">
+      <DependentUpon>ArrayUi.cs</DependentUpon>
+    </Compile>
+    <Compile Include="BLL\CustomerManager.cs" />
     <Compile Include="BLL\ItemManager.cs" />
+    <Compile Include="BLL\OrderManager.cs" />
     <Compile Include="CustomerCrud.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="CustomerCrud.Designer.cs">
       <DependentUpon>CustomerCrud.cs</DependentUpon>
     </Compile>
+    <Compile Include="DataTypeUi.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="DataTypeUi.Designer.cs">
+      <DependentUpon>DataTypeUi.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Home.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Home.Designer.cs">
+      <DependentUpon>Home.cs</DependentUpon>
+    </Compile>
     <Compile Include="ItemUi.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="ItemUi.Designer.cs">
       <DependentUpon>ItemUi.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ListUi.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ListUi.Designer.cs">
+      <DependentUpon>ListUi.cs</DependentUpon>
     </Compile>
     <Compile Include="OrderCrud.cs">
       <SubType>Form</SubType>
@@ -67,12 +93,26 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Repository\CustomerRepository.cs" />
     <Compile Include="Repository\ItemRepository.cs" />
+    <Compile Include="Repository\OrderRepository.cs" />
+    <EmbeddedResource Include="ArrayUi.resx">
+      <DependentUpon>ArrayUi.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="CustomerCrud.resx">
       <DependentUpon>CustomerCrud.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="DataTypeUi.resx">
+      <DependentUpon>DataTypeUi.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Home.resx">
+      <DependentUpon>Home.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="ItemUi.resx">
       <DependentUpon>ItemUi.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ListUi.resx">
+      <DependentUpon>ListUi.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="OrderCrud.resx">
       <DependentUpon>OrderCrud.cs</DependentUpon>
@@ -99,5 +139,6 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
